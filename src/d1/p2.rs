@@ -5,9 +5,8 @@ pub fn run(input: &str) -> i64 {
     let mut current: i64 = 0;
 
     for l in lines {
-        let n = l.parse::<i64>();
-        if n.is_ok() {
-            current += n.unwrap();
+        if let Ok(n) = l.parse::<i64>() {
+            current += n;
             continue;
         }
 
@@ -19,16 +18,17 @@ pub fn run(input: &str) -> i64 {
         let mut shift_num = 0;
 
         for i in 1..(TOP + 1) {
-            let c = ans.get(i);
-            if c.is_none() {
-                shift_num = TOP;
-                break;
-            }
-            let c = c.unwrap();
-
-            if current < *c {
-                shift_num = i;
-                break;
+            match ans.get(i) {
+                Some(&n) => {
+                    if current < n {
+                        shift_num = i;
+                        break;
+                    }
+                }
+                None => {
+                    shift_num = TOP;
+                    break;
+                }
             }
         }
 
