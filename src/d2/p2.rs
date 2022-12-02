@@ -1,4 +1,4 @@
-pub unsafe fn run(input: &str) -> i64 {
+pub fn run(input: &str) -> i64 {
     let mut ans: i64 = 0;
     let lines = input.lines();
 
