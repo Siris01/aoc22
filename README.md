@@ -7,15 +7,15 @@
 ## Languages
 
 - Day 1: Bash
-- Day 2: Brainfuck
-- Day 3: C
-- Day 4: C++
-- Day 5: C#
-- Day 6: Clojure
-- Day 7: Crystal
-- Day 8: Dart
-- Day 9: Elixir
-- Day 10: Go
+- Day 2: C
+- Day 3: C++
+- Day 4: C#
+- Day 5: Clojure
+- Day 6: Crystal
+- Day 7: Dart
+- Day 8: Elixir
+- Day 9: Go
+- Day 10: Groovy
 - Day 11: Haskell
 - Day 12: Java
 - Day 13: JavaScript
