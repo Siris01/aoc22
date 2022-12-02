@@ -1,12 +1,12 @@
 use std::fs;
 
-mod d1 {
+mod d2 {
     pub mod p1;
     pub mod p2;
 }
 
 fn main() {
     let input =
-        fs::read_to_string("src/d1/input.txt").expect("Something went wrong reading the file");
-    println!("{}", d1::p2::run(&input));
+        fs::read_to_string("src/d2/input.txt").expect("Something went wrong reading the file");
+    println!("{}", d2::p1::run(&input));
 }
