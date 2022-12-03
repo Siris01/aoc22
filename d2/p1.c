@@ -6,7 +6,7 @@ int main() {
   char *line = NULL;
   size_t len = 0;
 
-  int ans = 0, a = -1, b = -1;
+  int ans = 0, a = -1, b = -1, res = -1;
   char A, B;
 
   fp = fopen("input.txt", "r");
@@ -17,42 +17,52 @@ int main() {
     A = line[0];
     B = line[2];
 
-    if (A == 'A') {
+    switch (A) {
+    case 'A':
       a = 1;
-    } else if (A == 'B') {
+      break;
+    case 'B':
       a = 2;
-    } else {
+      break;
+    case 'C':
       a = 3;
+      break;
     }
 
-    if (B == 'X') {
+    switch (B) {
+    case 'X':
       b = 1;
-    } else if (B == 'Y') {
+      break;
+    case 'Y':
       b = 2;
-    } else {
+      break;
+    case 'Z':
       b = 3;
+      break;
     }
 
     switch (a - b) {
     case 0:
-      ans += b + 3;
+      res = 3;
       break;
     case -1:
-      ans += b + 6;
+      res = 6;
       break;
     case 2:
-      ans += b + 6;
+      res = 6;
       break;
-    default:
-      ans += b;
+    default: // Other cases
+      res = 0;
       break;
     }
+
+    ans += b + res;
   }
+
+  printf("%d", ans);
 
   fclose(fp);
   if (line)
     free(line);
-
-  printf("%d", ans);
   return 0;
 }
