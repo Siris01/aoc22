@@ -12,8 +12,8 @@ class Program
             int[] a = Array.ConvertAll(jobs[0].Split('-'), s => int.Parse(s));
             int[] b = Array.ConvertAll(jobs[1].Split('-'), s => int.Parse(s));
 
-            if (a[0] <= b[0] && a[1] >= b[1]) ans+= 1;
-            else if (b[0] <= a[0] && b[1] >= a[1]) ans+=1;
+            if (a[0] <= b[0] && a[1] >= b[1]) ans++;
+            else if (b[0] <= a[0] && b[1] >= a[1]) ans++;
         }
 
         Console.WriteLine(ans);
