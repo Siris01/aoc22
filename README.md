@@ -1,8 +1,8 @@
 # Advent of Code 2022
 
-- Each day is a separate folder, with its own language
-- Each folder contains 2 files `p1` and `p2`
-- Inputs for the problems can be found [here](https://adventofcode.com/2022/)
+- Each day is in a separate folder, with its own language
+- Each folder contains 2 files `p1` and `p2` and the input file `input.txt`
+- List of problems can be found [here](https://adventofcode.com/2022/)
 
 ## Languages
 
