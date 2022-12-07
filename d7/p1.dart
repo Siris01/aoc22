@@ -51,9 +51,11 @@ main() async {
         if (v["subs"].length > 0) {
             noOp = false;
             for (String s in List.from(v["subs"])) {
-                if (disk.containsKey(k + "/" + s)) {
-                    if (disk[k + "/" + s]["subs"].isEmpty) {
-                        disk[k]["size"] += disk[k + "/" + s]["size"];
+                var newDir = k == "/" ? k + s : k + "/" + s;
+
+                if (disk.containsKey(newDir)) {
+                    if (disk[newDir]["subs"].isEmpty) {
+                        disk[k]["size"] += disk[newDir]["size"];
                         disk[k]["subs"].remove(s);
                     }
                 } else {
@@ -69,11 +71,11 @@ main() async {
     if (noOp) break;
   }
 
-  int sum = 0;
+  int ans = 0;
 
   disk.forEach((k, v) {
-    if (v["size"] <= 100000) sum += v["size"] as int;
+    if (v["size"] <= 100000) ans += v["size"] as int;
   });
 
-  print(sum);
+  print(ans);
 }
