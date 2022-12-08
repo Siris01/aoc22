@@ -19,6 +19,12 @@ score = fn x, y ->
       |> String.at(y)
       |> String.to_integer()
 
+    get_count = fn list ->
+      Enum.reduce_while(list, 0, fn c, acc ->
+        if c < h, do: {:cont, acc + 1}, else: {:halt, acc + 1}
+      end)
+    end
+
     {l, r} =
       String.split(input, "\n")
       |> Enum.at(x)
@@ -34,43 +40,10 @@ score = fn x, y ->
       |> Enum.map(fn c -> String.to_integer(c) end)
       |> Enum.split(x)
 
-    lc =
-      Enum.reverse(l)
-      |> Enum.reduce_while(0, fn c, acc ->
-        if c < h do
-          {:cont, acc + 1}
-        else
-          {:halt, acc + 1}
-        end
-      end)
-
-    rc =
-      Enum.reduce_while(r, 0, fn c, acc ->
-        if c < h do
-          {:cont, acc + 1}
-        else
-          {:halt, acc + 1}
-        end
-      end)
-
-    tc =
-      Enum.reverse(t)
-      |> Enum.reduce_while(0, fn c, acc ->
-        if c < h do
-          {:cont, acc + 1}
-        else
-          {:halt, acc + 1}
-        end
-      end)
-
-    bc =
-      Enum.reduce_while(b, 0, fn c, acc ->
-        if c < h do
-          {:cont, acc + 1}
-        else
-          {:halt, acc + 1}
-        end
-      end)
+    lc = get_count.(Enum.reverse(l))
+    rc = get_count.(r)
+    tc = get_count.(Enum.reverse(t))
+    bc = get_count.(b)
 
     lc * rc * tc * bc
   end
@@ -83,13 +56,8 @@ ans =
   Enum.reduce(r, 0, fn x, acc ->
     Enum.reduce(c, acc, fn y, acc ->
       score = score.(x, y)
-
-      if score > acc do
-        score
-      else
-        acc
-      end
+      if score > acc, do: score, else: acc
     end)
   end)
 
-IO.puts(ans)
+IO.puts ans

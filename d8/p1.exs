@@ -19,6 +19,8 @@ is_visible = fn x, y ->
       |> String.at(y)
       |> String.to_integer()
 
+    cmp = fn c -> c < h end
+
     {l, r} =
       String.split(input, "\n")
       |> Enum.at(x)
@@ -27,8 +29,7 @@ is_visible = fn x, y ->
       |> Enum.map(fn c -> String.to_integer(c) end)
       |> Enum.split(y)
 
-    if Enum.all?(l, fn c -> c < h end) or
-         Enum.all?(r, fn c -> c < h end) do
+    if Enum.all?(l, cmp) or Enum.all?(r, cmp) do
       true
     else
       {t, b} =
@@ -38,8 +39,7 @@ is_visible = fn x, y ->
         |> Enum.map(fn c -> String.to_integer(c) end)
         |> Enum.split(x)
 
-      if Enum.all?(t, fn c -> c < h end) or
-           Enum.all?(b, fn c -> c < h end) do
+      if Enum.all?(t, cmp) or Enum.all?(b, cmp) do
         true
       else
         false
@@ -53,13 +53,7 @@ c = Enum.to_list(0..(cols - 1))
 
 ans =
   Enum.reduce(r, 0, fn x, acc ->
-    Enum.reduce(c, acc, fn y, acc ->
-      if is_visible.(x, y) do
-        acc + 1
-      else
-        acc
-      end
-    end)
+    Enum.reduce(c, acc, fn y, acc -> if is_visible.(x, y), do: acc + 1, else: acc end)
   end)
 
 IO.puts(ans)
