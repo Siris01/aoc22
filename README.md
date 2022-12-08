@@ -4,6 +4,7 @@
 - Each folder contains 2 files `p1` and `p2` and the input file `input.txt`
 - List of problems can be found [here](https://adventofcode.com/2022/)
 - Most of the programs were run on [repl.it](https://repl.it/)
+- Most of the solutions have a naive approach, and are not optimized for speed
 
 ## List of solutions
 
