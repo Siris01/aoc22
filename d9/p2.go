@@ -57,34 +57,18 @@ func main() {
 					headX, headY = x[j-1], y[j-1]
 				}
 
-				if dist(headX, x[j]) <= 1 && dist(headY, y[j]) <= 1 {
+				if dist(headX, x[j]) <= 1 && dist(headY, y[j]) <= 1 { 
 					continue
 				} else if (headX == x[j]) {
-					if headY > y[j] { 
-						y[j]++; newDir = "U"
-					} else {
-						y[j]--; newDir = "D"
-					}
+					if headY > y[j] {  y[j]++; newDir = "U" } else { y[j]--; newDir = "D" }
 				} else if (headY == y[j]) {
-					if headX > x[j] {
-						x[j]++; newDir = "R"
-					} else {
-						x[j]--; newDir = "L"
-					}
+					if headX > x[j] { x[j]++; newDir = "R" } else { x[j]--; newDir = "L" }
 				} else if (newDir == "R" || newDir == "L") {
           			if (newDir == "R") { x[j]++ } else { x[j]-- }
-					if headY > y[j] {
-						y[j]++; newDir = "U"
-					} else {
-						y[j]--; newDir = "D"
-					}
+					if headY > y[j] { y[j]++; newDir = "U" } else { y[j]--; newDir = "D" }
 				} else if (newDir == "U" || newDir == "D") {
           			if (newDir == "U") { y[j]++ } else { y[j]-- }
-					if headX > x[j] {
-						x[j]++; newDir = "R"
-					} else {
-						x[j]--; newDir = "L"
-					}
+					if headX > x[j] { x[j]++; newDir = "R" } else { x[j]--; newDir = "L" }
 				}
 			}
 
