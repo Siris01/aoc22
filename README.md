@@ -5,6 +5,7 @@
 - List of problems can be found [here](https://adventofcode.com/2022/)
 - Most of the programs were run on [repl.it](https://repl.it/)
 - Most of the solutions have a naive approach, and are not optimized for speed
+- Some programs may error out due to the input having CRLF line endings, so you may have to convert them to LF and vice versa
 
 ## List of solutions
 
