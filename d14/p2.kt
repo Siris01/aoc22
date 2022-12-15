@@ -53,6 +53,7 @@ fun main() {
     while (true) {
         if (fall(500, 0)) count++ else break
     }
-
-    print(count+1)
+    
+    count += 1
+    print(count)
 }

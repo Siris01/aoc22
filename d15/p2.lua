@@ -4,12 +4,12 @@ function get_neighbors(x, y, dist)
     result[2] = {x = x, y = y - 1 - dist}
 
     local c = 0
-    for j=y-dist, y do
+    for j = y - dist, y do
         c = c + 1
         result[#result + 1] = {x = x + c, y = j}
         result[#result + 1] = {x = x - c, y = j}
     end
-    for j=y+1, y+dist do
+    for j = y + 1, y + dist do
         c = c - 1
         result[#result + 1] = {x = x + c, y = j}
         result[#result + 1] = {x = x - c, y = j}
