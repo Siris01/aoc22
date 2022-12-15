@@ -27,18 +27,15 @@ function is_covered(x, y)
     return false
 end
 
-function get_beacon()
-    local sol = {x = 0, y = 0, d = 999999999}
-    
+function get_beacon()    
     for _,sensor in pairs(sensors) do
         local neighbors = get_neighbors(sensor.x, sensor.y, sensor.dist)
 
         for _,n in pairs(neighbors) do
-            if not is_covered(n.x, n.y) then
-                local d = math.abs(n.x - geo_center.x) + math.abs(n.y - geo_center.y)
-                if d < sol.d then
-                    sol = {x = n.x, y = n.y, d = d}
-                end
+            local is_within = bounds.minx <= n.x and n.x <= bounds.maxx and bounds.miny <= n.y and n.y <= bounds.maxy
+            
+            if is_within and not is_covered(n.x, n.y) then
+                return {x = n.x, y = n.y}
             end
         end
     end
@@ -49,23 +46,21 @@ end
 lines = io.open("input.txt", "r"):lines()
 sensors = {}
 ans = 0
-geo_center = {x = 0, y = 0, c = 0}
+bounds = {minx = 999999999, maxx = 0, miny = 999999999, maxy = 0}
 
 for line in lines do
     local matches = line:gmatch("%-?%d+")
     local sx, sy, bx, by = tonumber(matches()), tonumber(matches()), tonumber(matches()), tonumber(matches())
     local dist = math.abs(sx - bx) + math.abs(sy - by)
 
-    geo_center.x = geo_center.x + sx
-    geo_center.y = geo_center.y + sy
-    geo_center.c = geo_center.c + 1
+    if sx < bounds.minx then bounds.minx = sx end
+    if sx > bounds.maxx then bounds.maxx = sx end
+    if sy < bounds.miny then bounds.miny = sy end
+    if sy > bounds.maxy then bounds.maxy = sy end
 
     local sensor = {x = sx, y = sy, dist = dist}
     sensors[#sensors + 1] = sensor
 end
-
-geo_center.x = geo_center.x / geo_center.c
-geo_center.y = geo_center.y / geo_center.c
 
 beacon = get_beacon()
 ans = beacon.x * 4000000 + beacon.y
