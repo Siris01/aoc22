@@ -58,8 +58,7 @@ for line in lines do
     if sy < bounds.miny then bounds.miny = sy end
     if sy > bounds.maxy then bounds.maxy = sy end
 
-    local sensor = {x = sx, y = sy, dist = dist}
-    sensors[#sensors + 1] = sensor
+    sensors[#sensors + 1] = {x = sx, y = sy, dist = dist}
 end
 
 beacon = get_beacon()
